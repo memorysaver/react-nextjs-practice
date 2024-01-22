@@ -3,10 +3,18 @@ import apiClient from "../services/api-client";
 import { CanceledError } from "axios";
 
 // https://api.rawg.io/docs/#operation/games_list
+
+export interface Platform {
+  id: number;
+  name: string;
+  slug: string;
+}
+
 export interface Game {
   id: number;
   name: string;
   background_image: string;
+  parent_platforms: { platform: Platform }[]; // bad API design smell;
 }
 
 interface FetchGameResponse {
